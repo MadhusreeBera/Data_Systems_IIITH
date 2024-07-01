@@ -1,0 +1,15 @@
+LOAD Student
+LOAD Advisor
+
+crossg <- CROSS Student Advisor
+joing <- SELECT Advisor_id == Adv_Id  FROM crossg
+g1 <- SELECT Adv_age > 40 FROM joing
+g <- PROJECT Stud_Id, Adv_Id FROM g1
+
+RENAME Stud_Id TO stud_id FROM g
+RENAME Adv_Id TO adv_id FROM g
+
+PRINT g
+
+CLEAR Student
+CLEAR Advisor

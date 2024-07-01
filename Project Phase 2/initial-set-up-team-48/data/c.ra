@@ -1,0 +1,19 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+
+crossc <- CROSS Student Advisor
+joinc <- SELECT Adv_Id == Advisor_id FROM crossc
+c1 <- SELECT Adv_sex != Stud_sex FROM joinc
+c <- PROJECT Stud_Id, Adv_Id, Stud_sex, Adv_sex FROM c1
+
+RENAME Stud_Id TO stud_id FROM c
+RENAME Adv_Id TO adv_id FROM c
+RENAME Stud_sex TO stud_sex FROM c
+RENAME Adv_sex TO adv_sex FROM c
+
+PRINT c
+
+CLEAR Student
+CLEAR Advisor
+CLEAR Marks
